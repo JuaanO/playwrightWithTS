@@ -108,5 +108,18 @@ test.describe("Contact form tests", () => {
       await expect(page.getByText("Common Datepicker")).toHaveText(
          "Common Datepicker",
       );
+
+      const datePicker = page
+         .locator("nb-card", { hasText: "Common Datepicker" })
+         .getByPlaceholder("Form Picker");
+      await datePicker.click();
+
+      const daySelected = page
+         .locator("nb-calendar-picker")
+         .locator(".cell-content", { hasText: "9" })
+         .first();
+      await daySelected.click();
+
+      await expect(datePicker).toHaveValue("Mar 29, 2026");
    });
 });
