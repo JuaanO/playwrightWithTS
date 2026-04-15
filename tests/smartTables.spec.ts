@@ -112,11 +112,24 @@ test.describe("Smart tables", () => {
       await expect(emailToVerify).toContainText("johnstonknight");
    });
 
-   test("Test for Tree Grid", async ({ page }) => {
+   test("Verify if exist a document with UI", async ({ page }) => {
       await page.getByRole("link", { name: "Tree Grid" }).click();
       const headerTitle = page.locator("nb-card-body", { hasText: "Search:" });
       await expect(headerTitle).toContainText("Search");
 
-      
+      const table = page.locator("td", { hasText: "Projects" });
+      await table.click();
+      await expect(
+         page.getByRole("gridcell", { name: "project-4.docx" }),
+      ).toContainText("project-4");
+   });
+
+   test("Search a needed document using the searchbox", async ({ page }) => {
+      await page.getByRole("link", { name: "Tree Grid" }).click();
+
+      await page.getByRole("textbox", { name: "Search:" }).fill("project-4");
+      await expect(
+         page.getByRole("gridcell", { name: "project-4.docx" }),
+      ).toContainText("project-4");
    });
 });
