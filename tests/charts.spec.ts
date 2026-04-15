@@ -7,6 +7,8 @@ test.describe("Test with charts", () => {
       await page.getByRole("link", { name: "Echarts" }).click();
    });
 
-   test("Echarts", async ({ page }) => {});
-
+   test("Echarts", async ({ page }) => {
+      const headerMessage = page.getByText("Pie");
+      await expect(headerMessage).toHaveText("Pie");
+   });
 });
