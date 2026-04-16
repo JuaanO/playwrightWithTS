@@ -32,4 +32,8 @@ export class NavigationPage {
    async smartTablesPage() {
       await this.page.getByRole("link", { name: "Tables & Data" }).first().click();
    }
+
+   private async selectGroupMenuItem(){
+      
+   }
 }
