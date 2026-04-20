@@ -1,13 +1,9 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("The for authorization module", () => {
-   test.beforeEach(async ({ page }) => {
-      await page.goto("http://localhost:4200/");
-      await page.getByRole("link", { name: "Auth" }).click();
-   });
 
    test("Register a new username", async ({ page }) => {
-      await page.getByRole("link", { name: "Register" }).click();
+      // await page.getByRole("link", { name: "Register" }).click();
       const headerMessage = page.getByText("Register").first();
       expect(headerMessage).toHaveText("Register");
 

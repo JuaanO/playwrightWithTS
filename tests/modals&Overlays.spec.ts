@@ -1,14 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Modals and Overlays component", () => {
-   test.beforeEach(async ({ page }) => {
-      await page.goto("http://localhost:4200/");
-      await page.getByRole("link", { name: "Forms" }).click();
-   });
 
    test("Modals test", async ({ page }) => {
-      await page.getByRole("link", { name: "Modal & Overlays" }).click();
-      await page.getByRole("link", { name: "Dialog" }).click();
 
       //Open dialog
       await page

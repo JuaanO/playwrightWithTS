@@ -1,13 +1,13 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Contact form tests", () => {
-   test.beforeEach(async ({ page }) => {
-      await page.goto("http://localhost:4200/");
-      await page.getByRole("link", { name: "Forms" }).click();
-   });
+   // test.beforeEach(async ({ page }) => {
+   //    await page.goto("http://localhost:4200/");
+   //    await page.getByRole("link", { name: "Forms" }).click();
+   // });
 
    test("Forms Layouts", async ({ page }) => {
-      await page.getByRole("link", { name: "Form Layouts" }).click();
+      // await page.getByRole("link", { name: "Form Layouts" }).click();
       await expect(page.getByText("Inline form")).toHaveText("Inline form");
 
       //inline

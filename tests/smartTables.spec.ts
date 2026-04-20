@@ -1,10 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Smart tables", () => {
-   test.beforeEach(async ({ page }) => {
-      await page.goto("http://localhost:4200/");
-      await page.getByRole("link", { name: "Tables & Data" }).first().click();
-   });
+
    test("Add a new username", async ({ page }) => {
       await page.getByRole("link", { name: "Smart Table" }).click();
       const headerTitle = page.getByText("Smart Table").first();

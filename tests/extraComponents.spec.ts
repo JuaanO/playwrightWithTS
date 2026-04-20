@@ -1,11 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("test for extra component", () => {
-   test.beforeEach(async ({ page }) => {
-      await page.goto("http://localhost:4200/");
-      await page.getByRole("link", { name: "Extra components" }).click();
-      await page.getByRole("link", { name: "Calendar" }).click();
-   });
+
 
    test("Test for calendar", async ({ page }) => {
       //format needed -> Apr 14, 2026
