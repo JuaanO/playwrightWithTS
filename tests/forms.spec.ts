@@ -1,10 +1,6 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Contact form tests", () => {
-   // test.beforeEach(async ({ page }) => {
-   //    await page.goto("http://localhost:4200/");
-   //    await page.getByRole("link", { name: "Forms" }).click();
-   // });
 
    test("Forms Layouts", async ({ page }) => {
       // await page.getByRole("link", { name: "Form Layouts" }).click();
@@ -104,7 +100,7 @@ test.describe("Contact form tests", () => {
    });
 
    test("Datepicker", async ({ page }) => {
-      await page.getByRole("link", { name: "Datepicker" }).click();
+      // await page.getByRole("link", { name: "Datepicker" }).click();
       await expect(page.getByText("Common Datepicker")).toHaveText(
          "Common Datepicker",
       );

@@ -1,6 +1,7 @@
 import { test } from "@playwright/test";
 import { NavigationPage } from "../pageObejects/navigationPage";
 import { FormLayoutsPage } from "../pageObejects/formLayoutsPage";
+import {DatePickerPage} from "../pageObejects/datePickerPage"
 
 test.beforeEach(async ({ page }) => {
    await page.goto("http://localhost:4200/");
@@ -14,6 +15,7 @@ test.beforeEach(async ({ page }) => {
 //    await navigateTo.modalsPage();
 //    await navigateTo.smartTablesPage();
 //    await navigateTo.authorizationPage();
+//    await navigateTo.datePickerPage()
 // });
 
 test.describe("Run all test with forms", () => {
@@ -70,3 +72,20 @@ test.describe("Run all test with forms", () => {
       );
    });
 });
+
+test.describe("Run all test with datePicker", ()=>{
+   
+   test('datepicker', async ({page})=>{
+      const navigateTo = new NavigationPage(page);
+      const picker = new DatePickerPage(page)
+      await navigateTo.datePickerPage();
+      await picker.selectCommonDatePickerDateFromToday(9)
+   })
+   
+   test('datepicker1', async ({page})=>{
+      const navigateTo = new NavigationPage(page);
+      const picker = new DatePickerPage(page)
+      await navigateTo.datePickerPage();
+      await picker.selectDatePickerWithRangeFromToday(22,33)
+   })
+})

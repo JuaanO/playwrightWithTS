@@ -13,6 +13,7 @@ export class NavigationPage {
    readonly modalsPageItemDialog: Locator
    readonly smartTablesPageItem:Locator
    readonly smartTablesPageItemS: Locator
+   readonly datePickerPageItem: Locator
    
 
    constructor(page: Page) {
@@ -28,11 +29,18 @@ export class NavigationPage {
       this.modalsPageItemDialog = page.getByRole("link", { name: "Dialog" })
       this.smartTablesPageItem = page.getByRole("link", { name: "Tables & Data" })
       this.smartTablesPageItemS = page.getByRole("link", { name: "Smart Table" })
+      this.datePickerPageItem = page.getByRole("link", { name: "Datepicker" })
    }
 
    async formLayoutsPage() {
       await this.selectGroupMenuItem("forms");
       await this.formLayoutsPageItem.click();
+   }
+
+   async datePickerPage(){
+      await this.selectGroupMenuItem("forms");
+      await this.datePickerPageItem.click();
+
    }
 
    async authorizationPage() {
