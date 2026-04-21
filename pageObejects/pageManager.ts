@@ -24,7 +24,5 @@ export class PageManager {
    }
    onFormsLayoutPage() {
       return this.formLayoutsPage;
-   }
-
-   
+   }   
 }
