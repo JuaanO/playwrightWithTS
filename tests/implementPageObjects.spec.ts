@@ -1,5 +1,6 @@
 import { test } from "@playwright/test";
 import { PageManager } from "../pageObejects/pageManager";
+import { faker } from "@faker-js/faker";
 
 test.beforeEach(async ({ page }) => {
    await page.goto("http://localhost:4200/");
@@ -16,16 +17,20 @@ test("Navigate to form page", async ({ page }) => {
 });
 
 test.describe("Run the entire test suite", () => {
+   const email = faker.internet.email({
+      firstName: "juan",
+      provider: "hotmail.xxx",
+   });
+   const fullName = faker.person.fullName({ sex: "female" });
+   const pass = faker.internet.password();
+
    test.describe("Run all test with forms", () => {
       test("Parametrized methods using the grid", async ({ page }) => {
          const pageManager = new PageManager(page);
          await pageManager.navigateTo().formLayoutsPage();
          await pageManager
             .onFormsLayoutPage()
-            .submitUsingTheGridFormWithCredentials(
-               "juanito@gmail.com",
-               "secret123**!",
-            );
+            .submitUsingTheGridFormWithCredentials(fullName, pass);
       });
 
       test("Parametrized method Inline", async ({ page }) => {
@@ -33,35 +38,27 @@ test.describe("Run the entire test suite", () => {
          await pageManager.navigateTo().formLayoutsPage();
          await pageManager
             .onFormsLayoutPage()
-            .submitUsingTheInlineFormWithCredentials(
-               "Jos3@hotmail.es",
-               "secret321!!*",
-            );
+            .submitUsingTheInlineFormWithCredentials(fullName, pass);
       });
 
       test("Parametrized method basic form", async ({ page }) => {
          const pageManager = new PageManager(page);
+         const subject = faker.lorem.words();
+         const message = faker.lorem.paragraph();
          await pageManager.navigateTo().formLayoutsPage();
          await pageManager
             .onFormsLayoutPage()
-            .submitUsingTheFormWithoutLabels(
-               "JJStar@hotmail.es",
-               "Subject of message",
-               "The big message!!",
-            );
+            .submitUsingTheFormWithoutLabels(email, subject, message);
       });
 
       test("Parametrized method block form", async ({ page }) => {
          const pageManager = new PageManager(page);
+         const lastName = faker.person.lastName();
+         const website = faker.internet.url();
          await pageManager.navigateTo().formLayoutsPage();
          await pageManager
             .onFormsLayoutPage()
-            .submitUsingTheBlockForm(
-               "Juan Jose",
-               "Star",
-               "juan@jose.com",
-               "www.jjstar.com.es",
-            );
+            .submitUsingTheBlockForm(fullName, lastName, email, website);
       });
 
       test("Parametrized method horizontal form", async ({ page }) => {
@@ -69,7 +66,7 @@ test.describe("Run the entire test suite", () => {
          await pageManager.navigateTo().formLayoutsPage();
          await pageManager
             .onFormsLayoutPage()
-            .submitUsingTheHorizontalForm("Juan Jose", "secretxx123!");
+            .submitUsingTheHorizontalForm(fullName, pass);
       });
    });
    test.describe("Run all test with datePicker", () => {
