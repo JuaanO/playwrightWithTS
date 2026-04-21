@@ -2,9 +2,13 @@
   "name": "tsp",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "pageObject-chrome": "npx playwright test implementPageObjects.spec.ts --project=chromium",
+    "pageObject-firefox": "npx playwright test implementPageObjects.spec.ts --project=firefox",
+    "pageObject-all": "npm run pageObject-chrome && pageObject-firefox" 
+  },
   "keywords": [],
-  "author": "",
+  "author": "Juan Jose",
   "license": "ISC",
   "description": "",
   "devDependencies": {
