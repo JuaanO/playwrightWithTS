@@ -1,50 +1,34 @@
 import { test } from "@playwright/test";
-import { NavigationPage } from "../pageObejects/navigationPage";
-import { FormLayoutsPage } from "../pageObejects/formLayoutsPage";
-import { DatePickerPage } from "../pageObejects/datePickerPage";
+import { PageManager } from "../pageObejects/pageManager";
 
 test.beforeEach(async ({ page }) => {
    await page.goto("http://localhost:4200/");
 });
 
-// test("Navigate to form page", async ({ page }) => {
-//    const navigateTo = new NavigationPage(page);
-//    await navigateTo.formLayoutsPage();
-//    await navigateTo.chartsPage();
-//    await navigateTo.extraComponentPage();
-//    await navigateTo.modalsPage();
-//    await navigateTo.smartTablesPage();
-//    await navigateTo.authorizationPage();
-//    await navigateTo.datePickerPage()
-// });
-
 test.describe("Run the entire test suite", () => {
    test.describe("Run all test with forms", () => {
       test("Parametrized methods using the grid", async ({ page }) => {
-         const navigateTo = new NavigationPage(page);
-         const onFormsLayoutPage = new FormLayoutsPage(page);
-         await navigateTo.formLayoutsPage();
-         await onFormsLayoutPage.submitUsingTheGridFormWithCredentials(
+         const pageManager = new PageManager(page)
+         await pageManager.navigateTo().formLayoutsPage();
+         await pageManager.onFormsLayoutPage().submitUsingTheGridFormWithCredentials(
             "juanito@gmail.com",
             "secret123**!",
          );
       });
 
       test("Parametrized method Inline", async ({ page }) => {
-         const navigateTo = new NavigationPage(page);
-         const onFormsLayoutPage = new FormLayoutsPage(page);
-         await navigateTo.formLayoutsPage();
-         await onFormsLayoutPage.submitUsingTheInlineFormWithCredentials(
+         const pageManager = new PageManager(page)
+         await pageManager.navigateTo().formLayoutsPage();
+         await pageManager.onFormsLayoutPage().submitUsingTheInlineFormWithCredentials(
             "Jos3@hotmail.es",
             "secret321!!*",
          );
       });
 
       test("Parametrized method basic form", async ({ page }) => {
-         const navigateTo = new NavigationPage(page);
-         const onFormsLayoutPage = new FormLayoutsPage(page);
-         await navigateTo.formLayoutsPage();
-         await onFormsLayoutPage.submitUsingTheFormWithoutLabels(
+         const pageManager = new PageManager(page)
+         await pageManager.navigateTo().formLayoutsPage();
+         await pageManager.onFormsLayoutPage().submitUsingTheFormWithoutLabels(
             "JJStar@hotmail.es",
             "Subject of message",
             "The big message!!",
@@ -52,10 +36,9 @@ test.describe("Run the entire test suite", () => {
       });
 
       test("Parametrized method block form", async ({ page }) => {
-         const navigateTo = new NavigationPage(page);
-         const onFormsLayoutPage = new FormLayoutsPage(page);
-         await navigateTo.formLayoutsPage();
-         await onFormsLayoutPage.submitUsingTheBlockForm(
+         const pageManager = new PageManager(page)
+         await pageManager.navigateTo().formLayoutsPage();
+         await pageManager.onFormsLayoutPage().submitUsingTheBlockForm(
             "Juan Jose",
             "Star",
             "juan@jose.com",
@@ -64,10 +47,9 @@ test.describe("Run the entire test suite", () => {
       });
 
       test("Parametrized method horizontal form", async ({ page }) => {
-         const navigateTo = new NavigationPage(page);
-         const onFormsLayoutPage = new FormLayoutsPage(page);
-         await navigateTo.formLayoutsPage();
-         await onFormsLayoutPage.submitUsingTheHorizontalForm(
+         const pageManager = new PageManager(page)
+         await pageManager.navigateTo().formLayoutsPage();
+         await pageManager.onFormsLayoutPage().submitUsingTheHorizontalForm(
             "Juan Jose",
             "secretxx123!",
          );
@@ -75,17 +57,15 @@ test.describe("Run the entire test suite", () => {
    });
    test.describe("Run all test with datePicker", () => {
       test("Test for Common Datepicker", async ({ page }) => {
-         const navigateTo = new NavigationPage(page);
-         const picker = new DatePickerPage(page);
-         await navigateTo.datePickerPage();
-         await picker.selectCommonDatePickerDateFromToday(25);
+         const pageManager = new PageManager(page)
+         await pageManager.navigateTo().datePickerPage();
+         await pageManager.picker().selectCommonDatePickerDateFromToday(25);
       });
 
       test("Test Datepicker with a range", async ({ page }) => {
-         const navigateTo = new NavigationPage(page);
-         const picker = new DatePickerPage(page);
-         await navigateTo.datePickerPage();
-         await picker.selectDatePickerWithRangeFromToday(22, 33);
+         const pageManager = new PageManager(page)
+         await pageManager.navigateTo().datePickerPage();
+         await pageManager.picker().selectDatePickerWithRangeFromToday(22, 33);
       });
    });
 });
