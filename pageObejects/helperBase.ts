@@ -1,4 +1,4 @@
-import { expect, Page, test } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { faker } from "@faker-js/faker";
 
 export class HelperBase {
