@@ -79,7 +79,7 @@ test.describe("Run the entire test suite", () => {
       test("Test Datepicker with a range", async ({ page }) => {
          const pageManager = new PageManager(page);
          await pageManager.navigateTo().datePickerPage();
-         await pageManager.picker().selectDatePickerWithRangeFromToday(22, 33);
+         await pageManager.picker().selectDatePickerWithRangeFromToday(22, 29);
       });
    });
 });
